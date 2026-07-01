@@ -32,14 +32,22 @@ def indexable_verdict(status, robots_allowed, signals):
         return (False, "x-robots-tag noindex")
     return (True, "indexable")
 
+_ROBOTS_CACHE = {}  # netloc -> RobotFileParser, or None when robots.txt is unreachable
+
 def _robots_allowed(url):
     parts = urlparse(url)
-    rp = urllib.robotparser.RobotFileParser()
-    rp.set_url(f"{parts.scheme}://{parts.netloc}/robots.txt")
-    try:
-        rp.read()
-    except Exception:
-        return True  # if robots.txt unreachable, treat as allowed (documented)
+    netloc = parts.netloc
+    if netloc not in _ROBOTS_CACHE:
+        rp = urllib.robotparser.RobotFileParser()
+        rp.set_url(f"{parts.scheme}://{netloc}/robots.txt")
+        try:
+            rp.read()
+        except Exception:
+            rp = None  # if robots.txt unreachable, treat as allowed (documented)
+        _ROBOTS_CACHE[netloc] = rp
+    rp = _ROBOTS_CACHE[netloc]
+    if rp is None:
+        return True
     return rp.can_fetch(config.USER_AGENT, url)
 
 def check_url(url):

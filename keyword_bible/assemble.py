@@ -10,7 +10,6 @@ MATRIX_COLUMNS = (
 GAP_COLUMNS = ["Keyword", "Sub-topic", "Intent", "Search Volume", "PB Position", "Gap Status",
                "Opportunity Score", "Best Competitor", "Best Competitor Position",
                "PB Suggested URL", "URL Map Status"]
-URLMAP_COLUMNS = ["PB URL", "Vertical", "In Sitemap?"]  # extended in Task 10 with live/GSC cols
 REVIEW_COLUMNS = ["Keyword", "Candidate", "Reason", "Search Volume", "Sample URL"]
 
 
