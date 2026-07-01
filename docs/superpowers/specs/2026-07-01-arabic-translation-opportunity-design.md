@@ -112,7 +112,8 @@ ArabicDemand   = Σ Arabic SEMrush search volume of the URL's mapped keywords
                  + GSC Arabic impressions landing on the URL
 Performance    = the URL's current GSC impressions (proven live demand; falls back to
                  Clicks-and-Impression.csv impressions when a GSC page row is unavailable)
-CompetitorGap  = 1 + (share of the 8 competitors that rank in Arabic for the URL's sub-topic)
+CompetitorGap  = 1 + (share of the 8 competitors that have >=1 Arabic-script ranking
+                 keyword in the URL's sub-topic)   # rewards topics rivals cover in Arabic
 TwinFactor     = 1.0 if no /ar-ae/ twin exists
                  0.2 if an Arabic twin already exists (deprioritise re-translation; keep visible)
 ```
