@@ -2,3 +2,6 @@ keyword_bible/_interim/
 __pycache__/
 *.pyc
 .pytest_cache/
+
+# macOS
+.DS_Store
